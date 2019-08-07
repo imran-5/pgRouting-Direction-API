@@ -4,8 +4,12 @@ A Complete Solution PgRouting Web directions API written in Node js (Javascript)
 
 Setup
  *edit config file according to your pgrouting schema
+ 
  *if your pgrouting column names are different then you have to change in model/pgrouting.
  
+ 
+#Start Server
+ `node server.js`
 
 
 API Request-Example Code
