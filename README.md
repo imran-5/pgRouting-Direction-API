@@ -7,7 +7,9 @@ Setup
  
  *if your pgrouting column names are different then you have to change in model/pgrouting.
  
- 
+#install modules
+`npm install`
+Then
 #Start Server
  `node server.js`
 
