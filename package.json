@@ -1,0 +1,17 @@
+{
+  "name": "node-pgrouting",
+  "version": "1.0.0",
+  "description": "A PG-Routing API written in Node-Js Express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Muhammad Imran Siddique",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "pg": "^7.12.0",
+    "body-parser": "^1.19.0"
+  }
+}
