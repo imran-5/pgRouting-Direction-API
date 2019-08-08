@@ -14,7 +14,7 @@ Then
  `node server.js`
 
 
-API Request-Example Code
+API Request-Example
  * http://localhost:3000
  * http://localhost:3000/route?start=537466,6553539&end=387577,6665207
  * http://localhost:3000/closest?lat=537466&lng=6553539&buffer=3000000&limit=1
