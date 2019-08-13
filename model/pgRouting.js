@@ -16,7 +16,7 @@ function routeQuery(start, end) {
         'SELECT gid as id, source, target, cost_len as cost, rcost_len as reverse_cost FROM ${config_pg.table}', 
         (SELECT id FROM ${config_pg.vertices_table} ORDER BY st_distance(the_geom, st_setsrid(st_makepoint(${start}), ${config_pg.input_srid})) LIMIT 1),
         (SELECT id FROM ${config_pg.vertices_table} ORDER BY st_distance(the_geom, st_setsrid(st_makepoint(${end}), ${config_pg.input_srid})) LIMIT 1),
-        false) as dj, line_1 as ln where dj.edge=ln."gid";`;
+        false) as dj, ${config_pg.table} as ln where dj.edge=ln."gid";`;
     return query;
 }
 
