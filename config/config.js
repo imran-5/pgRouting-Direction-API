@@ -17,9 +17,9 @@ let port_exp=3000;
 
 //PostGIS/pgRouting table name, vertices_table_name, input_points_srid, output_geom_srid//
 
-let table='line_1';
-let vertices_table='line_1_vertices_pgr';
-let input_srid='3067';
+let table='line';
+let vertices_table='line_vertices_pgr';
+let input_srid='3857';
 let output_srid='3857';
 
 
