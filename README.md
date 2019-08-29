@@ -8,7 +8,7 @@ A complete solution of PgRouting direction Web API written in Node js (Javascrip
  
 - *if your pgrouting database table schema/name of columns is different, you have to change the query schema in `src/model/pgrouting.js`
  
-## install modules
+## Install Modules
 
 `npm install`
 
