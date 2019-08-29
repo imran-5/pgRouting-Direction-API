@@ -1,0 +1,10 @@
+{
+  "rules": {
+    "camelcase": ["error", {"properties": "never"}]
+  },
+  "extends": "airbnb-base",
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true
+  }
+}

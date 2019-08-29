@@ -1,21 +1,22 @@
 # pgRouting-Web-API Written In Node JS Express (Javascript)
 
-A Complete Solution of PgRouting Directions Web API written in Node js (Javascript) Express
+A complete solution of PgRouting direction Web API written in Node js (Javascript) Express
 
 ## Setup
 
-- edit `config/config.js` file according to your postgres connection, pgRouting table name and express js settings.
+- edit `src/config/config.js` file according to your postgres connection, pgRouting table name and express js settings.
  
-- *if your pgrouting database table schema/name of columns is different, you have to change the query schema in `model/pgrouting.js`
+- *if your pgrouting database table schema/name of columns is different, you have to change the query schema in `src/model/pgrouting.js`
  
 ## install modules
 
 `npm install`
 
 
-## Start Server
+## Start Development Server
 
-`node server.js`
+`npm start`
+
 
 
 ## API Request Example
