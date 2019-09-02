@@ -27,7 +27,7 @@ module.exports = {
                 // custom logic
             }
         }),
-        new CleanWebpackPlugin({verbose: true}),
+        new CleanWebpackPlugin({verbose: true})
     ],
     module: {
         rules: [
@@ -50,27 +50,41 @@ module.exports = {
             new TerserPlugin({
                 parallel: true,
                 sourceMap: true,
-                minify: (file, sourceMap) => {
-                    const extractedComments = [];
-
-                    // Custom logic for extract comments
-
-                    const { error, map, code, warnings } = require('uglify-js') // Or require('./path/to/uglify-module')
-                        .minify(file, {
-                            /* Your options for minification */
-                            compress: {
-                                drop_console: true
-                            }
-                        });
-
-                    return { error, map, code, warnings, extractedComments };
-                },
                 terserOptions: {
+                    parse: {
+                        // parse options
+                    },
+                    // mangle: {
+                    //     properties: {
+                    //         // mangle property options
+                            // reserved: ['const', 'require', 'exports'],
+                        // }
+                    // },
+                    compress: {
+                        ecma: 8,
+                        ie8: false,
+                        drop_console: true,
+                    },
                     output: {
-                        comments: false,
+                        // output options
+                    },
+                    sourceMap: {
+                        // source map options
+                    },
+                    ecma: 8, // specify one of: 5, 6, 7 or 8
+                    keep_classnames: false,
+                    keep_fnames: false,
+                    ie8: false,
+                    module: false,
+                    nameCache: null, // or specify a name cache object
+                    safari10: false,
+                    toplevel: false,
+                    warnings: false,
+                    output: {
+                        comments: false
                     },
                 },
-                extractComments: true
+                // extractComments: true
             })
         ],
     }
