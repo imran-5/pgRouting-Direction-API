@@ -9,12 +9,12 @@
     "prod": "node ./dist/server.js"
   },
   "author": {
-    "name" : "Muhammad Imran Siddique",
-    "email" : "newton.imran@gmail.com",
+    "name": "Muhammad Imran Siddique",
+    "email": "newton.imran@gmail.com"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/I1mran/pgRouting-Web-API.git"
+    "type": "git",
+    "url": "https://github.com/I1mran/pgRouting-Web-API.git"
   },
   "license": "MIT",
   "dependencies": {
@@ -40,6 +40,7 @@
     "html-webpack-plugin": "^3.2.0",
     "terser": "^4.2.1",
     "terser-webpack-plugin": "^1.4.1",
+	"regenerator-runtime": "^0.13.3",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.7",
     "webpack-node-externals": "^1.7.2"
