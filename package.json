@@ -4,9 +4,10 @@
   "description": "A pgRouting API written in Node js Express",
   "main": "src/index.js",
   "scripts": {
-    "start": "webpack --mode development",
-    "build": "webpack --mode production --progress -p",
-    "prod": "node ./dist/server.js"
+    "start": "nodemon ./src/server.js",
+    "start_build": "webpack --mode production --progress && npm run prod",
+    "build": "webpack --progress --mode production",
+    "prod": "node ./dist/bundle.js"
   },
   "author": {
     "name": "Muhammad Imran Siddique",
@@ -18,31 +19,23 @@
   },
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "core-js": "^3.2.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "pg": "^7.12.0",
-    "uglify-js": "^3.6.0"
+    "pg": "^7.12.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
-    "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
-    "eslint": "^6.2.2",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-loader": "^3.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^3.2.0",
+    "nodemon": "^1.19.1",
     "terser": "^4.2.1",
     "terser-webpack-plugin": "^1.4.1",
-	"regenerator-runtime": "^0.13.3",
+    "uglify-js": "^3.6.0",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.7",
+    "webpack-dev-middleware": "^3.7.0",
+    "webpack-hot-middleware": "^2.25.0",
     "webpack-node-externals": "^1.7.2"
   }
 }

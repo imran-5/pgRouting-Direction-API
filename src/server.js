@@ -3,22 +3,34 @@ const cors = require('cors');
 const routing = require('./model/pgRouting');
 const { exp_config } = require('./config/config');
 
-const app = express();
+// use nodemon no need to use webpack-hot-middleware and webpackDevMiddleware for express
+//
+// import webpackDevMiddleware from 'webpack-dev-middleware'
+// import config from '../webpack.config'
+// import webpackHotMiddleware from 'webpack-hot-middleware'
+// import webpack from 'webpack'
 
+const app = express();
+// const compiler = webpack(config);
 app.use(cors({
   origin: (origin, callback) => {
     callback(null, true);
   },
 }));
+
+// use nodemon no need to use webpack-hot-middleware and webpackDevMiddleware for express
+// app.use(webpackDevMiddleware(compiler, {
+//   publicPath: config.output.publicPath
+// }));
+// app.use(webpackHotMiddleware(compiler));
+
 app.get('/', (req, res) => {
   res.send('Welcome to PG Routing API Written in Node JS Express!');
 });
 
 app.get('/route', (req, res, next) => {
-  const values = req.query;
-  const { start } = values;
-  const { end } = values;
 
+  const { start, end } = req.query;
   routing.route(start, end)
     .then((result) => {
       res.status(200).json(result);
@@ -29,9 +41,7 @@ app.get('/route', (req, res, next) => {
 });
 
 app.get('/distance', (req, res, next) => {
-  const values = req.query;
-  const { start } = values;
-  const { end } = values;
+  const { start, end } = req.query;
   routing.distance(start, end)
     .then((result) => {
       res.status(200).json(result);
@@ -42,10 +52,7 @@ app.get('/distance', (req, res, next) => {
 });
 
 app.get('/closest', (req, res, next) => {
-  const values = req.query;
-  // console.log(values);
-  const { lat } = values;
-  const { lng } = values;
+  const { lat, lng } = req.query;
   const buffer = values.buffer || 1;
   const limit = values.limit || 1;
   routing.closest(lat, lng, buffer, limit)

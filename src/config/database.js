@@ -1,7 +1,6 @@
 const pg = require('pg/lib');
 const { config_db } = require('./config');
 
-
 const config_connection = {
   host: config_db.host,
   port: config_db.port,
@@ -17,19 +16,38 @@ const config_connection = {
 // initializing connection pool according to the config setup
 const pool = new pg.Pool(config_connection);
 
+// check the connection
+const connect = function (callback) {
+  pool.connect((err, client, release) => {
+    if (err) {
+      return console.error('Error acquiring client', err.stack)
+    }
+    client.query('SELECT NOW()', (err, result) => {
+      release()
+      if (err) {
+        return console.error('Error executing query', err.stack)
+      }
+      console.log("database poll connection successful at "+ result.rows[0].now)
+    })
+  })
+  return pool.connect(callback);
+};
+// first time connect;
+connect();
 pool.on('error', (err, client) => {
   // generate error
-  // console.log(client);
+  console.log(client);
   console.error('idle client error', err.message, err.stack);
 });
 
 // pass each query to pool
-module.exports.query = function (text, values, callback) {
-  // console.log('query:', text, values);
+const query = function (text, values, callback) {
+  console.log('query:', text, values);
   return pool.query(text, values, callback);
 };
 
-// check the connection
-module.exports.connect = function (callback) {
-  return pool.connect(callback);
-};
+module.exports = {
+  pool,
+  connect,
+  query
+}
