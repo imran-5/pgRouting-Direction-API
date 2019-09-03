@@ -1,4 +1,4 @@
-const {pool} = require('../config/database');
+const {pool, query} = require('../config/database');
 
 const {config_pg} = require('../config/config');
 
@@ -34,7 +34,7 @@ function nearbyQuery(lat, lng, buffer, limit) {
 
 function route(start, end) {
     return new Promise((resolve, reject) => {
-        pool.query(routeQuery(start, end), (err, res) => {
+        query(routeQuery(start, end), (err, res) => {
             if (err) {
                 reject('error running query', err);
                 return;
@@ -53,7 +53,7 @@ function route(start, end) {
 
 function distance(start, end) {
     return new Promise((resolve, reject) => {
-        pool.query(distanceQuery(start, end), (err, res) => {
+        query(distanceQuery(start, end), (err, res) => {
             if (err) {
                 reject('error running query', err);
                 return;
@@ -71,7 +71,7 @@ function distance(start, end) {
 
 function closest(lat, lng, buffer, limit) {
     return new Promise((resolve, reject) => {
-        pool.query(nearbyQuery(lat, lng, buffer, limit), (err, res) => {
+        query(nearbyQuery(lat, lng, buffer, limit), (err, res) => {
             if (err) {
                 reject(err);
                 return;

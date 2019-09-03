@@ -31,7 +31,6 @@
     "nodemon": "^1.19.1",
     "terser": "^4.2.1",
     "terser-webpack-plugin": "^1.4.1",
-    "uglify-js": "^3.6.0",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.7",
     "webpack-dev-middleware": "^3.7.0",
