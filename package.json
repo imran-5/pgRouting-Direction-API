@@ -5,9 +5,10 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon ./src/server.js",
-    "start_build": "webpack --mode production --progress && npm run prod",
     "build": "webpack --progress --mode production",
-    "prod": "node ./dist/bundle.js"
+    "prod": "node ./dist/bundle.js",
+    "build:prod": "webpack --mode production --progress && npm run prod",
+    "prod:pm2": "pm2 start ./dist/bundle.js --name routing"
   },
   "author": {
     "name": "Muhammad Imran Siddique",
