@@ -20,8 +20,8 @@ const port_exp = 3000;
 
 const table = 'line';
 const vertices_table = 'line_vertices_pgr';
-const input_srid = '3857';
-const output_srid = '3857';
+const input_srid = '4326';
+const output_srid = '4326';
 
 
 exports.config_db = {

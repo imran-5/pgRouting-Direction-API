@@ -1,5 +1,4 @@
 const {pool, query} = require('../config/database');
-
 const {config_pg} = require('../config/config');
 
 function distanceQuery(start, end) {
@@ -36,10 +35,9 @@ function route(start, end) {
     return new Promise((resolve, reject) => {
         query(routeQuery(start, end), (err, res) => {
             if (err) {
-                reject('error running query', err);
+                reject('query error', err);
                 return;
             }
-
             resolve({
                 route: res.rows,
                 // route: res.rows.map(r => ({
@@ -55,12 +53,10 @@ function distance(start, end) {
     return new Promise((resolve, reject) => {
         query(distanceQuery(start, end), (err, res) => {
             if (err) {
-                reject('error running query', err);
+                reject('query error', err);
                 return;
             }
-
             // let cost = res.rows.map(r => r.cost).reduce((a, b) => a + b);
-
             resolve({
                 // distance: cost
                 distance_meters: res.rows[res.rows.length - 1].agg_cost,

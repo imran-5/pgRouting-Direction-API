@@ -31,6 +31,7 @@ app.get('/', (req, res) => {
 app.get('/route', (req, res, next) => {
 
   const { start, end } = req.query;
+  console.log(start);
   routing.route(start, end)
     .then((result) => {
       res.status(200).json(result);
