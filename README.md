@@ -27,8 +27,8 @@ A complete solution of PgRouting direction Web API written in Node js (Javascrip
  
  
 App is underdevelopment:
-* way points
-* docker
-* handle other pgRouting capabilities.
+* Way Points
+* Docker
+* Handle other pgRouting capabilities.
  
 # Thanks.
