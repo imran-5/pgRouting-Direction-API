@@ -1,6 +1,6 @@
 # pgRouting-Web-API Written In Node JS Express (Javascript)
 
-A complete solution of PgRouting direction Web API written in Node js (Javascript) Express
+A complete solution of pgRouting direction Web API written in Node js (Javascript) Express
 
 ## Setup
 
