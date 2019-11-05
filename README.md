@@ -1,4 +1,4 @@
-# pgRouting-Web-API  [![BSD licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/i1mran/pgRouting-Web-Direction-API/LICENSE.md)
+# pgRouting-Web-API  [![BSD licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/I1mran/pgRouting-Web-Direction-API/blob/master/LICENSE)
 
 A complete solution of pgRouting direction Web API written in Node js (Javascript) Express
 
