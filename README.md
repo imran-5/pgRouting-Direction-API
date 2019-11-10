@@ -30,5 +30,3 @@ App is underdevelopment:
 * Way Points
 * Docker
 * Handle other pgRouting capabilities.
- 
-# Thanks.
