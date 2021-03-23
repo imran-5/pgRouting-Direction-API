@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require("body-parser");
 const {route, closest, distance} = require('./src/pgRouting');
 const { exp_config } = require('./src/config');
 
@@ -12,11 +13,8 @@ const { exp_config } = require('./src/config');
 
 const app = express();
 // const compiler = webpack(config);
-app.use(cors({
-  origin: (origin, callback) => {
-    callback(null, true);
-  },
-}));
+app.use(cors());
+app.use(bodyParser.json());
 
 // use nodemon no need to use webpack-hot-middleware and webpackDevMiddleware for express
 // app.use(webpackDevMiddleware(compiler, {

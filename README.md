@@ -4,7 +4,7 @@ A complete solution of pgRouting direction Web API written in Node js (Javascrip
 
 ## Setup
 
-- edit `src/config/config.js` file according to your postgres connection, pgRouting table name and express js settings.
+- edit `.env` file according to your postgres connection, pgRouting table name and express js settings.
  
 - *if your pgrouting database table schema/name of columns is different, you have to change the query schema in `src/model/pgrouting.js`
  
