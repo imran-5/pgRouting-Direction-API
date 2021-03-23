@@ -4,7 +4,7 @@
   "description": "A pgRouting API written in Node js Express",
   "main": "src/index.js",
   "scripts": {
-    "start": "nodemon ./src/server.js",
+    "start": "nodemon server.js",
     "build": "webpack --progress --mode production",
     "prod": "node ./dist/bundle.js",
     "build:prod": "webpack --mode production --progress && npm run prod",
@@ -22,22 +22,22 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "fb-watchman": "^2.0.0",
-    "graphql": "^14.5.4",
-    "pg": "^7.12.0"
+    "fb-watchman": "^2.0.1",
+    "pg": "^8.5.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "babel-loader": "^8.0.6",
+    "@babel/core": "^7.13.10",
+    "@babel/preset-env": "^7.13.12",
+    "babel-loader": "^8.2.2",
+    "dotenv": "8.0.0",
     "clean-webpack-plugin": "^3.0.0",
-    "nodemon": "^1.19.1",
-    "terser": "^4.2.1",
-    "terser-webpack-plugin": "^1.4.1",
-    "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.7",
-    "webpack-dev-middleware": "^3.7.0",
+    "nodemon": "^2.0.7",
+    "terser": "^5.6.1",
+    "terser-webpack-plugin": "^5.1.1",
+    "webpack": "^5.27.2",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-middleware": "^4.1.0",
     "webpack-hot-middleware": "^2.25.0",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-node-externals": "^2.5.2"
   }
 }

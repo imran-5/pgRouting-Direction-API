@@ -9,7 +9,7 @@ module.exports = {
     target: 'node',
     // mode: 'production',
     externals: [nodeExternals()],
-    entry: ['./src/server.js'],
+    entry: ['./server.js'],
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'

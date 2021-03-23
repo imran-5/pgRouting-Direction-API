@@ -17,33 +17,40 @@ const config_connection = {
 const pool = new pg.Pool(config_connection);
 
 // check the connection
-const connect = function (callback) {
-  pool.connect((err, client, release) => {
+const connect = async () => {
+  await pool.connect((err, client, release)=> {
     if (err) {
-      return console.error('Error acquiring client', err.stack)
+      return console.error('Error while connecting pool', err.stack)
     }
     client.query('SELECT NOW()', (err, result) => {
-      release()
+      release();
       if (err) {
         return console.error('Error executing query', err.stack)
       }
-      console.log("database poll connection successful at "+ result.rows[0].now)
+      console.log("Database Connected Successfully at Time: ", result.rows[0].now)
     })
-  })
-  return pool.connect(callback);
+  });
 };
-// first time connect;
-connect();
+
 pool.on('error', (err, client) => {
   // generate error
   console.log(client);
   console.error('idle client error', err.message, err.stack);
 });
 
-// pass each query to pool
-const query = function (text, values, callback) {
-  console.log('query:', text, values);
-  return pool.query(text, values, callback);
+// pass each query to pool and send back results
+const query = async (text, value=[])=> {
+  // console.log('query:', text, value);
+  const client = await pool.connect();
+  try {
+    const res = await client.query(text, value);
+    // console.log(res)
+    return res.rows;
+  } finally {
+    // Make sure to release the client before any error handling,
+    // just in case the error handling itself throws an error.
+    client.release();
+  }
 };
 
 module.exports = {

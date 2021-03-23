@@ -1,5 +1,5 @@
-const {pool, query} = require('../config/database');
-const {config_pg} = require('../config/config');
+const {query} = require('./database');
+const {config_pg} = require('./config');
 
 function distanceQuery(start, end) {
     // ST_GeomFromText('POINT(24.240194 60.008345)', 4326)
@@ -33,50 +33,15 @@ function nearbyQuery(lat, lng, buffer, limit) {
 }
 
 function route(start, end) {
-    return new Promise((resolve, reject) => {
-        query(routeQuery(start, end), (err, res) => {
-            if (err) {
-                reject('query error', err);
-                return;
-            }
-            resolve({
-                route: res.rows,
-                // route: res.rows.map(r => ({
-                // geom: r.geom,
-                // cost: r.cost
-                // }))
-            });
-        });
-    });
+    return query(routeQuery(start, end));
 }
 
 function distance(start, end) {
-    return new Promise((resolve, reject) => {
-        query(distanceQuery(start, end), (err, res) => {
-            if (err) {
-                reject('query error', err);
-                return;
-            }
-            // let cost = res.rows.map(r => r.cost).reduce((a, b) => a + b);
-            resolve({
-                // distance: cost
-                distance_meters: res.rows[res.rows.length - 1].agg_cost,
-            });
-        });
-    });
+    return query(distanceQuery(start, end));
 }
 
 function closest(lat, lng, buffer, limit) {
-    return new Promise((resolve, reject) => {
-        query(nearbyQuery(lat, lng, buffer, limit), (err, res) => {
-            if (err) {
-                reject(err);
-                return;
-            }
-
-            resolve(res.rows);
-        });
-    });
+    return query(nearbyQuery(lat, lng, buffer, limit));
 }
 
 module.exports = {

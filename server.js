@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const routing = require('./model/pgRouting');
-const { exp_config } = require('./config/config');
+const {route, closest, distance} = require('./src/pgRouting');
+const { exp_config } = require('./src/config');
 
 // use nodemon no need to use webpack-hot-middleware and webpackDevMiddleware for express
 //
@@ -28,11 +28,10 @@ app.get('/', (req, res) => {
   res.send('Welcome to PG Routing API Written in Node JS Express!');
 });
 
-app.get('/route', (req, res, next) => {
+app.get('/route', async(req, res, next) => {
 
   const { start, end } = req.query;
-  console.log(start);
-  routing.route(start, end)
+  route(start, end)
     .then((result) => {
       res.status(200).json(result);
     })
@@ -41,9 +40,9 @@ app.get('/route', (req, res, next) => {
     });
 });
 
-app.get('/distance', (req, res, next) => {
+app.get('/distance', async(req, res, next) => {
   const { start, end } = req.query;
-  routing.distance(start, end)
+  distance(start, end)
     .then((result) => {
       res.status(200).json(result);
     })
@@ -52,11 +51,11 @@ app.get('/distance', (req, res, next) => {
     });
 });
 
-app.get('/closest', (req, res, next) => {
+app.get('/closest', async(req, res, next) => {
   const { lat, lng } = req.query;
   const buffer = values.buffer || 1;
   const limit = values.limit || 1;
-  routing.closest(lat, lng, buffer, limit)
+  closest(lat, lng, buffer, limit)
     .then((result) => {
       res.status(200).json(result);
     })
