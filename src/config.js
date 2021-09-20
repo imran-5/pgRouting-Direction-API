@@ -19,7 +19,7 @@ const connectionTimeoutMillis = 30000;
 
 
 // set express server port
-const port_exp = 3000;
+const port = process.env.PORT;
 
 // PostGIS/pgRouting table name, vertices_table_name, input_points_srid, output_geom_srid//
 
@@ -40,7 +40,7 @@ exports.config_db = {
   connectionTimeoutMillis,
 };
 
-exports.exp_config = { port: port_exp };
+exports.exp_config = { port };
 
 exports.config_pg = {
   table, vertices_table, input_srid, output_srid,
