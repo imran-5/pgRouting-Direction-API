@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Quick Start - Leaflet</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+            crossorigin=""></script>
+
+</head>
+<body>
+
+
+<div id="mapid" style="width: auto; height: 800px;"></div>
+<script>
+
+    var mymap = L.map('mapid').setView([61.9241, 25.7482], 5);
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        maxZoom: 18,
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+            '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+            'Imagery � <a href="https://www.mapbox.com/">Mapbox</a>',
+        id: 'mapbox/streets-v11'
+    }).addTo(mymap);
+
+
+        const response = fetch('http://lcoalhost:3000/api/route?start=24.793591586422792,60.0862026252685&end=24.91836707142648,60.0277445910978', {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
+        }).then(
+            response => response.json()
+        ).then((json) => {
+            let data=(json).route;
+            let wkt=[];
+            for(let i=0; i< data.length; i++){
+                wkt.push(JSON.parse(data[i].geojson).coordinates);
+
+            }
+            console.log(wkt);
+            var polyline=  L.polyline(wkt, {color: 'red'}).addTo(mymap);
+            mymap.fitBounds(polyline.getBounds());
+        })
+</script>
+
+
+</body>
+</html>
