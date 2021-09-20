@@ -4,19 +4,17 @@
   "description": "A pgRouting API written in Node js Express",
   "main": "src/index.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "build": "webpack --progress --mode production",
-    "prod": "node ./dist/bundle.js",
-    "build:prod": "webpack --mode production --progress && npm run prod",
-    "prod:pm2": "pm2 start ./dist/bundle.js --name routing"
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "start:pm2": "pm2 start server.js --name routing"
   },
   "author": {
     "name": "Muhammad Imran Siddique",
-    "email": "newton.imran@gmail.com"
+    "email": "muimsd@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/I1mran/pgRouting-Web-API.git"
+    "url": "https://github.com/imran-5/pgRouting-Web-API.git"
   },
   "license": "MIT",
   "dependencies": {
@@ -24,21 +22,10 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "fb-watchman": "^2.0.1",
-    "pg": "^8.5.1"
+    "pg": "^8.7.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.10",
-    "@babel/preset-env": "^7.13.12",
-    "babel-loader": "^8.2.2",
     "dotenv": "8.0.0",
-    "clean-webpack-plugin": "^3.0.0",
-    "nodemon": "^2.0.7",
-    "terser": "^5.6.1",
-    "terser-webpack-plugin": "^5.1.1",
-    "webpack": "^5.27.2",
-    "webpack-cli": "^4.5.0",
-    "webpack-dev-middleware": "^4.1.0",
-    "webpack-hot-middleware": "^2.25.0",
-    "webpack-node-externals": "^2.5.2"
+    "nodemon": "^2.0.7"
   }
 }
