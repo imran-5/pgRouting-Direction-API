@@ -20,10 +20,10 @@ A complete solution of pgRouting direction Web API written in Node js (Javascrip
 
 
 ## API Request Example
- * http://localhost:3000
- * http://localhost:3000/route?start=3078473.56,8206254.21&end=2780495.14,8423917.64
- * http://localhost:3000/closest?lat=3078473.56&lng=8206254.21&buffer=3000000&limit=1
- * http://localhost:3000/distance?start=3078473.56,8206254.21&end=2780495.14,8423917.64
+ * http://localhost:3000/api
+ * http://localhost:3000/api/route?start=3078473.56,8206254.21&end=2780495.14,8423917.64
+ * http://localhost:3000/api/closest?lat=3078473.56&lng=8206254.21&buffer=3000000&limit=1
+ * http://localhost:3000/api/distance?start=3078473.56,8206254.21&end=2780495.14,8423917.64
  
  
 App is under development:
