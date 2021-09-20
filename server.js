@@ -1,32 +1,18 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require("body-parser");
-const {route, closest, distance} = require('./src/pgRouting');
+const { route, closest, distance, topology } = require('./src/pgRouting');
 const { exp_config } = require('./src/config');
 
-// use nodemon no need to use webpack-hot-middleware and webpackDevMiddleware for express
-//
-// import webpackDevMiddleware from 'webpack-dev-middleware'
-// import config from '../webpack.config'
-// import webpackHotMiddleware from 'webpack-hot-middleware'
-// import webpack from 'webpack'
-
 const app = express();
-// const compiler = webpack(config);
 app.use(cors());
 app.use(bodyParser.json());
 
-// use nodemon no need to use webpack-hot-middleware and webpackDevMiddleware for express
-// app.use(webpackDevMiddleware(compiler, {
-//   publicPath: config.output.publicPath
-// }));
-// app.use(webpackHotMiddleware(compiler));
-
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.send('Welcome to PG Routing API Written in Node JS Express!');
 });
 
-app.get('/route', async(req, res, next) => {
+app.get('/api/route', async (req, res, next) => {
 
   const { start, end } = req.query;
   route(start, end)
@@ -38,7 +24,7 @@ app.get('/route', async(req, res, next) => {
     });
 });
 
-app.get('/distance', async(req, res, next) => {
+app.get('/api/distance', async (req, res, next) => {
   const { start, end } = req.query;
   distance(start, end)
     .then((result) => {
@@ -49,13 +35,23 @@ app.get('/distance', async(req, res, next) => {
     });
 });
 
-app.get('/closest', async(req, res, next) => {
+app.get('/api/closest', async (req, res, next) => {
   const { lat, lng } = req.query;
   const buffer = values.buffer || 1;
   const limit = values.limit || 1;
   closest(lat, lng, buffer, limit)
     .then((result) => {
       res.status(200).json(result);
+    })
+    .catch((reason) => {
+      res.status(500).json(reason);
+    });
+});
+
+app.get('/api/topology', async (req, res, next) => {
+  topology()
+    .then((result) => {
+      res.status(200).json({ result: "Okay" });
     })
     .catch((reason) => {
       res.status(500).json(reason);

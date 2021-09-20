@@ -44,8 +44,25 @@ function closest(lat, lng, buffer, limit) {
     return query(nearbyQuery(lat, lng, buffer, limit));
 }
 
+const topology = async () => {
+        await query(`SELECT pgr_createTopology(${config_pg.table}, 0.0001, 'geom', 'id')`, () => {
+            console.log("Topology created");
+        })
+        await query(`SELECT  pgr_analyzeGraph(${config_pg.table}, 0.0001, 'geom','id', 'source', 'target')`, () => {
+            console.log("Graph Anaysis");
+            
+        })
+        await query(`UPDATE ${config_pg.table} SET cost_len = ST_Length(st_transform(geom, 3857))`, () => {
+            console.log("Cost length");
+            
+        })
+        await query(`UPDATE ${config_pg.table} SET rcost_len = cost_len)`, () => {
+            console.log("Reverse cost length");
+        })
+}
 module.exports = {
     route,
     distance,
     closest,
+    topology
 };
