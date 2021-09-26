@@ -1,5 +1,5 @@
-const {query} = require('./database');
-const {config_pg} = require('./config');
+const { query } = require('./database');
+const { config_pg } = require('./config');
 
 function distanceQuery(start, end) {
     // ST_GeomFromText('POINT(24.240194 60.008345)', 4326)
@@ -10,7 +10,7 @@ function distanceQuery(start, end) {
         , false)`;
     return query;
 }
-
+// https://blog.crunchydata.com/blog/routing-with-postgresql-and-crunchy-spatial
 function routeQuery(start, end) {
     const query = `
     SELECT *, st_transform(geom, ${config_pg.output_srid}) as geom, st_asgeojson(st_transform(geom, ${config_pg.output_srid})) geojson, st_astext(st_transform(geom, ${config_pg.output_srid})) wkt FROM pgr_dijkstra(
@@ -45,20 +45,25 @@ function closest(lat, lng, buffer, limit) {
 }
 
 const topology = async () => {
-        await query(`SELECT pgr_createTopology(${config_pg.table}, 0.0001, 'geom', 'id')`, () => {
-            console.log("Topology created");
-        })
-        await query(`SELECT  pgr_analyzeGraph(${config_pg.table}, 0.0001, 'geom','id', 'source', 'target')`, () => {
-            console.log("Graph Anaysis");
-            
-        })
-        await query(`UPDATE ${config_pg.table} SET cost_len = ST_Length(st_transform(geom, 3857))`, () => {
-            console.log("Cost length");
-            
-        })
-        await query(`UPDATE ${config_pg.table} SET rcost_len = cost_len)`, () => {
-            console.log("Reverse cost length");
-        })
+    // https://docs.pgrouting.org/latest/en/topology-functions.html
+    await query(`SELECT pgr_createTopology('${config_pg.table}', 0.0001, 'geom', 'id')`, () => {
+        console.log("Topology created");
+    })
+
+    await query(`SELECT pgr_createVerticesTable('${config_pg.vertices_table}', 'geom', 'source', 'target')`, () => {
+        console.log("Vertices Tablee created");
+    })
+    await query(`SELECT  pgr_analyzeGraph('${config_pg.table}', 0.0001, 'geom','id', 'source', 'target')`, () => {
+        console.log("Graph Anaysis");
+
+    })
+    await query(`UPDATE ${config_pg.table} SET cost_len = ST_Length(st_transform(geom, 3857))`, () => {
+        console.log("Cost length");
+
+    })
+    await query(`UPDATE ${config_pg.table} SET rcost_len = cost_len)`, () => {
+        console.log("Reverse cost length");
+    })
 }
 module.exports = {
     route,
