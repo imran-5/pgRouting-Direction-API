@@ -1,6 +1,6 @@
-# pgRouting-API  [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/I1mran/pgRouting-Web-Direction-API/blob/master/LICENSE)
+# pgRouting-API  [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Imran-5/pgRouting-Direction-API/blob/master/LICENSE)
 
-A complete solution of pgRouting direction Web API written in Node js (Javascript) Express
+A complete solution of pgRouting direction API written in Node js.
 
 ## Setup
 
@@ -26,7 +26,7 @@ A complete solution of pgRouting direction Web API written in Node js (Javascrip
  * http://localhost:3000/api/distance?start=3078473.56,8206254.21&end=2780495.14,8423917.64
  
  
-Todo:
+### Todo:
 * Way Points
 * Docker
 * Handle other pgRouting capabilities.
