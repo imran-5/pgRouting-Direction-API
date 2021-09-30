@@ -26,7 +26,7 @@ A complete solution of pgRouting direction Web API written in Node js (Javascrip
  * http://localhost:3000/api/distance?start=3078473.56,8206254.21&end=2780495.14,8423917.64
  
  
-App is under development:
+Todo:
 * Way Points
 * Docker
 * Handle other pgRouting capabilities.
