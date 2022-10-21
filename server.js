@@ -58,4 +58,4 @@ app.get('/api/topology', async (req, res, next) => {
     });
 });
 
-app.listen(exp_config.port, () => console.log(`app listening on port ${exp_config.port}!`));
+app.listen(exp_config.port, () => console.log(`app listening on port ${exp_config.serverPort}!`));
